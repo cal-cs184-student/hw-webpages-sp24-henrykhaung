@@ -15,132 +15,308 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="template.css" />
 
-    <title>Homework 1: Rasterizer</title>
+    <title>Template</title>
   </head>
 
+  <hr class="breakline-top" />
+
   <body>
-    <div>
+    <div class="title-margin">
       <h1 class="text-center mt-5">CS 184: Computer Graphics, Spring 2024</h1>
-      <h1 class="text-center mt-4">Project 1: Rasterizer</h1>
+      <h1 class="text-center mt-4">Project __: ___</h1>
       <h4 class="text-center mt-4">Henry Khaung</h4>
-      <h6 class="text-center mt-1">
-        Link to Website:
-        <a
-          href="https://cal-cs184-student.github.io/hw-webpages-sp24-henrykhaung/hw1/index.html"
-          >Here</a
-        >
-      </h6>
+      <h6 class="text-center mt-1"></h6>
     </div>
 
-    <!-- TASK 1 -->
-    <div class="text-center taskdiv">
-      <h3>Task 1: Drawing Single-Color Triangles</h3>
-    </div>
-    <div class="text-start taskp mt-4">
-      <p>
-        In this task, we implemented the function `rasterize_triangle` so that
-        we can render a triangle to screen space given 3 points in (x, y)
-        coordinate space.
-      </p>
-      <p>
-        I solved this task by checking for triangle winding, finding the
-        bounding box to sample the pixels in, and checking whether each pixel
-        passes the three line test, which was covered in lecture. First, to make
-        sure the vectors representing the edges of the triangle are
-        counter-clockwise, I used the right hand rule and the cross-product. The
-        sign of the cross-product indicates the winding direction and in my
-        case, since I want the winding to be in counterclockwise, I check if the
-        cross-product sign is negative (indicating counterclock wise) and if it
-        is I swap the position of vertices ie x becomes y and y becomes x. This
-        is to ensure counter-clockwise winding for the three line test. Once
-        this is taken care of, I found the boundaries of the given vertices: the
-        smallest x and y and the biggest x and y. This is so that I can sample
-        points within this bounding box without having to start from (0,0) and
-        ending at (w,h) of screen space. Using this bounding box, I iterate
-        through each point and for each point, I find sample points by adding
-        0.5 to x and y. Then, I perform the three line test and if the test
-        passes, I call `fill_pixel` helper function to set the color of a pixel.
-        Since this algorithm tests each pixel in the bounding box, it is no
-        worse than one that checks each sample within the bounding box of the
-        triangle.
-      </p>
+    <ul class="nav nav-tabs navbarmargins justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link" href="#task-1">Task 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#task-2">Task 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#task-3">Task 3</a>
+      </li>
+    </ul>
 
-      <div class="text-center mt-5">
-        <img src="task1.png" alt="task 1 image" />
-        <p>Screenshot of basic/test4.svg</p>
+    <div class="taskbox-outer" id="task-1">
+      <div class="taskbox-inner">
+        <div class="text-center taskdiv">
+          <h3>Task 1: Drawing Single-Color Triangles</h3>
+        </div>
+
+        <div class="text-start taskp mt-4 mb-5">
+          <p>
+            In this task, we implemented the function `rasterize_triangle` so
+            that we can render a triangle to screen space given 3 points in (x,
+            y) coordinate space.
+          </p>
+          <p>
+            I solved this task by checking for triangle winding, finding the
+            bounding box to sample the pixels in, and checking whether each
+            pixel passes the three line test, which was covered in lecture.
+            First, to make sure the vectors representing the edges of the
+            triangle are counter-clockwise, I used the right hand rule and the
+            cross-product. The sign of the cross-product indicates the winding
+            direction and in my case, since I want the winding to be in
+            counterclockwise, I check if the cross-product sign is negative
+            (indicating counterclock wise) and if it is I swap the position of
+            vertices ie x becomes y and y becomes x. This is to ensure
+            counter-clockwise winding for the three line test. Once this is
+            taken care of, I found the boundaries of the given vertices: the
+            smallest x and y and the biggest x and y. This is so that I can
+            sample points within this bounding box without having to start from
+            (0,0) and ending at (w,h) of screen space. Using this bounding box,
+            I iterate through each point and for each point, I find sample
+            points by adding 0.5 to x and y. Then, I perform the three line test
+            and if the test passes, I call `fill_pixel` helper function to set
+            the color of a pixel. Since this algorithm tests each pixel in the
+            bounding box, it is no worse than one that checks each sample within
+            the bounding box of the triangle.
+          </p>
+
+          <div class="text-center mt-5">
+            <img src="task1.png" alt="task 1 image" />
+            <p class="imgfont">Screenshot of basic/test4.svg</p>
+            <div>
+              At the tip of purple triangle, we see it disconnected when it is
+              supposed to be connected.
+            </div>
+            <div>We can also see aliasing especially in the red triangle.</div>
+          </div>
+        </div>
       </div>
     </div>
 
+    <hr class="breakline" />
+
     <!-- TASK 2 -->
-    <div class="text-center taskdiv">
-      <h3>Task 2: Antialiasing by Supersampling</h3>
+    <div class="taskbox-outer" id="task-2">
+      <div class="taskbox-inner">
+        <div class="text-center taskdiv">
+          <h3>Task 2: Antialiasing by Supersampling</h3>
+        </div>
+        <div class="text-start taskp mt-4">
+          <p>
+            In this task, we implemented supersampling to get rid of the
+            "jaggies" that we saw from task 1. In other words, we antialiase by
+            supersampling.
+          </p>
+
+          <p>
+            To support supersampling, I had to modify set_sample_rate,
+            set_framebuffer_target, resolve_to_framebuffer, rasterize_triangle,
+            and add a helper function called fill_supersample_pixel.
+          </p>
+
+          <ul>
+            <li>
+              `set_sample_rate`
+              <p>
+                This function is called when we want to change the supersample
+                rate or when we press = during the runtime of the draw program.
+                The only change needed here to support supersampling is to
+                ensure that when the sample buffer is resized, it is resized to
+                a size of width * height * rate where width and height are the
+                dimensions for the frame buffer while rate is the sample rate.
+                This calculation is needed to support the increased number of
+                samples.
+              </p>
+            </li>
+            <li>
+              `set_framebuffer_target`
+              <p>
+                This function is called when the draw program window is resized.
+                When the program window is resized, we have to resize the sample
+                buffer as well and to support supersampling, the sample rate is
+                accounted for in the resize calculation.
+              </p>
+            </li>
+            <li>
+              `rasterize_triangle`
+              <p>
+                Since supersampling is sampling multiple points within each
+                pixel and averaging them, we need to modify this function to
+                have nested for loops in order to iterate over each pixel inside
+                the bounding box. Then, we test these subpixels with the three
+                line test again and if they are within the triangle, we color
+                them using `fill_supersample_pixel`.
+              </p>
+            </li>
+            <li>
+              `fill_supersample_pixel`
+              <p>
+                This is a helper function I added. This functions similarly to
+                the `fill_pixel` function except it supports supersampling; the
+                function makes it so that all the supersampled pixels, or
+                subpixels, correspond to the pixel in the frame buffer and are
+                changed to the same color. In order to do this, I need to change
+                the way I index into the sample buffer. This is done by
+                accounting for sample rate and keeping track of the sample
+                within the pixel (x, y). This means that I take in one extra
+                parameter which I call `s` and we keep track of it inside the
+                inner loops for the subpixels.
+              </p>
+            </li>
+          </ul>
+          <p>
+            I used the sample_buffer and resized it by doing width * height *
+            sample_rate so that there is enough memory for the subpixels. I also
+            modified the rasterize_triangle function to have two for loops
+            inside the loops for iteration through the pixels. These two inner
+            loops are for iteration through the subpixels; within them, I find
+            the sample point for each subpixel. Then, I perform the 3 point test
+            and if it passes, I call on fill_supersample_pixel to fill the
+            subpixel with the specified color. I also keep track of the index of
+            the current subpixel so that in fill_supersample_pixel, I can index
+            into the correct sample_buffer. The function resolve_to_framebuffer
+            is also modified by taking our subpixels and averaging them down.
+          </p>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="text-center mt-5">
+                <img
+                  src="task2s1.png"
+                  alt="task 2 supersample = 1 image"
+                  height="400px"
+                />
+                <p class="imgfont">
+                  Screenshot of basic/test4.svg at supersample rate = 1
+                </p>
+                <div>
+                  Again, at the tip of the purple triangle, we see it
+                  disconnected when it is supposed to be connected.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="text-center mt-5">
+                <img
+                  src="task2s4.png"
+                  alt="task 2 supersample = 4 image"
+                  height="400px"
+                />
+                <p class="imgfont">
+                  Screenshot of basic/test4.svg at supersample rate = 4
+                </p>
+                <div>
+                  This is a bit better, but the tip is still disconnected.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="text-center mt-5">
+                <img
+                  src="task2s9.png"
+                  alt="task 2 supersample = 9 image"
+                  height="400px"
+                />
+                <p class="imgfont">
+                  Screenshot of basic/test4.svg at supersample rate = 9
+                </p>
+                <div>
+                  This is a bit better since the tip is now connected. However,
+                  if you zoom in closely, you can still tell that it is
+                  disconnected.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="text-center mt-5">
+                <img
+                  src="task2s16.png"
+                  alt="task 2 supersample = 16 image"
+                  height="400px"
+                />
+                <p class="imgfont">
+                  Screenshot of basic/test4.svg at supersample rate = 16
+                </p>
+                <div>Much better!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="text-start mt-4"
+          style="margin-left: 25rem; margin-right: 25rem"
+        >
+          As supersampling rate increases, the triangle edges are smoother. This
+          is because supersampling is essentially taking a higher resolution and
+          then downsampling and averaging it to the output resolution of the
+          frame buffer.
+        </div>
+      </div>
     </div>
-    <div class="text-start taskp mt-4">
-      <p>
-        In this task, we implemented the function `rasterize_triangle` so that
-        we can render a triangle to screen space given 3 points in (x, y)
-        coordinate space.
-      </p>
-      <p>
-        I solved this task by checking for triangle winding, finding the
-        bounding box to sample the pixels in, and checking whether each pixel
-        passes the three line test, which was covered in lecture. First, to make
-        sure the vectors representing the edges of the triangle are
-        counter-clockwise, I used the right hand rule and the cross-product. The
-        sign of the cross-product indicates the winding direction and in my
-        case, since I want the winding to be in counterclockwise, I check if the
-        cross-product sign is negative (indicating counterclock wise) and if it
-        is I swap the position of vertices ie x becomes y and y becomes x. This
-        is to ensure counter-clockwise winding for the three line test. Once
-        this is taken care of, I found the boundaries of the given vertices: the
-        smallest x and y and the biggest x and y. This is so that I can sample
-        points within this bounding box without having to start from (0,0) and
-        ending at (w,h) of screen space. Using this bounding box, I iterate
-        through each point and for each point, I find sample points by adding
-        0.5 to x and y. Then, I perform the three line test and if the test
-        passes, I call `fill_pixel` helper function to set the color of a pixel.
-        Since this algorithm tests each pixel in the bounding box, it is no
-        worse than one that checks each sample within the bounding box of the
-        triangle.
-      </p>
-    </div>
+
+    <hr class="breakline" />
 
     <!-- TASK 3 -->
-    <div class="text-center taskdiv">
-      <h3>Task 3: Transforms</h3>
-    </div>
-    <div class="text-start taskp mt-4">
-      <p>summarize task</p>
-      <p>answer</p>
+    <div class="taskbox-outer" id="task-3">
+      <div class="taskbox-inner">
+        <div class="text-center taskdiv">
+          <h3>Task 3: ___</h3>
+        </div>
+
+        <div class="text-start taskp mt-4 mb-5">
+          <p>task summary</p>
+          <p>explain</p>
+
+          <div class="text-center mt-5">
+            <img src="" alt="" />
+            <p class="imgfont">Screenshot of</p>
+            <div>Describe image</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- TASK 4 -->
-    <div class="text-center taskdiv">
-      <h3>Task 4: Barycentric coordinates</h3>
-    </div>
-    <div class="text-start taskp mt-4">
-      <p>summarize task</p>
-      <p>answer</p>
-    </div>
+    <hr class="breakline" />
 
-    <!-- TASK 5 -->
-    <div class="text-center taskdiv">
-      <h3>Task 5: "Pixel sampling" for texture mapping</h3>
-    </div>
-    <div class="text-start taskp mt-4">
-      <p>summarize task</p>
-      <p>answer</p>
-    </div>
+    <hr class="breakline-bottom" />
 
-    <!-- TASK 6 -->
-    <div class="text-center taskdiv">
-      <h3>Task 6: "Level sampling" with mipmaps for texture mapping</h3>
-    </div>
-    <div class="text-start taskp mt-4">
-      <p>summarize task</p>
-      <p>answer</p>
-    </div>
+    <!-- ui -->
+
+    <button class="btn btn-primary scroll-to-top" onclick="scrollToTop()">
+      Scroll to Top
+    </button>
+
+    <!-- Bootstrap JS scripts (jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+      // Function to scroll to the top of the page
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Show/Hide scroll-to-top button based on scroll position
+      window.onscroll = function () {
+        var scrollButton = document.querySelector(".scroll-to-top");
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          scrollButton.style.display = "block";
+        } else {
+          scrollButton.style.display = "none";
+        }
+      };
+    </script>
   </body>
 </html>
