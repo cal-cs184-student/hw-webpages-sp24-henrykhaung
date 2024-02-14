@@ -5,6 +5,21 @@
   margin-bottom: 2rem;
 }
 
+.btn-transparent {
+  background-color: transparent;
+  border: none;
+  color: #543dda;
+}
+
+.btn-transparent:hover {
+  border: 1px solid #007bff;
+}
+
+.btn-transparent:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .taskbox-outer {
   margin-top: 5rem;
   margin-bottom: 5rem;

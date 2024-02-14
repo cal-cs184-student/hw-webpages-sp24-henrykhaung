@@ -1,3 +1,5 @@
+<!-- CHANGE the link tags if you want to see template -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +17,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="template.css" />
+    <link rel="stylesheet" href="../template.css" />
 
     <title>Template</title>
   </head>
@@ -32,13 +34,31 @@
 
     <ul class="nav nav-tabs navbarmargins justify-content-center">
       <li class="nav-item">
-        <a class="nav-link" href="#task-1">Task 1</a>
+        <button
+          type="button"
+          class="btn-transparent nav-link"
+          onclick="scrollToTask('#task-1')"
+        >
+          Task 1
+        </button>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#task-2">Task 2</a>
+        <button
+          type="button"
+          class="btn-transparent nav-link"
+          onclick="scrollToTask('#task-2')"
+        >
+          Task 2
+        </button>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#task-3">Task 3</a>
+        <button
+          type="button"
+          class="btn-transparent nav-link"
+          onclick="scrollToTask('#task-3')"
+        >
+          Task 3
+        </button>
       </li>
     </ul>
 
@@ -286,7 +306,7 @@
 
     <hr class="breakline-bottom" />
 
-    <!-- ui -->
+    <!-- UI -->
 
     <button class="btn btn-primary scroll-to-top" onclick="scrollToTop()">
       Scroll to Top
@@ -299,24 +319,7 @@
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <script>
-      // Function to scroll to the top of the page
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      // Show/Hide scroll-to-top button based on scroll position
-      window.onscroll = function () {
-        var scrollButton = document.querySelector(".scroll-to-top");
-        if (
-          document.body.scrollTop > 20 ||
-          document.documentElement.scrollTop > 20
-        ) {
-          scrollButton.style.display = "block";
-        } else {
-          scrollButton.style.display = "none";
-        }
-      };
-    </script>
+    <!-- scroll functions -->
+    <script src="../template.js"></script>
   </body>
 </html>
