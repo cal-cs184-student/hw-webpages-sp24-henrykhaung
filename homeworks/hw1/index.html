@@ -551,33 +551,36 @@
             higher frequencies.
           </p>
 
-          <p>
-            I implemented level sampling by additionally finding the barycentric
-            coordinates for the sample point's neighbors. These neighbor
-            barycentric coordinates are used to calculate the level in the
-            `get_level` function.
-          </p>
+          <ul>
+            <li>
+              `rasterize_textured_triangle`
+              <p>
+                I implemented level sampling by additionally finding the barycentric coordinates for the sample point's neighbors.
+                These neighbor barycentric coordinates are used to calculate the level in the `get_level` function.
+                These neighbor barycentric coordinates are first used to find the rate of change of u and v in respect to x and y 
+                respectively. This is so that we know which level in the mipmap to use. Larger derivatives result in larger level 
+                values and therefore lower resolutions. This is implemented in `get_level`.
+              </p>
+            </li>
+            <li>
+              `get_level`
+              <p>
+                We use the derivatives mentioned above and using the level calculation in lecture to find the level.
+              </p>
+            </li>
+            <li>
+              `sample`
+              <p>
+                Once we find which level to sample from, we can either use the two
+                methods from before: nearest or bilinear interpolation. With nearest level, L_NEAREST, we use the nearest level to sample from.
+                With L_LINEAR, we take two levels above and below the level returned
+                by `get_level` and interpolate them.
+              </p>
+            </li>
+          </ul>
 
           <p>
-            These neighbor barycentric coordinates are first used to find the
-            rate of change of u and v in respect to x and y respectively. This
-            is so that we know which level in the mipmap to use. Larger
-            derivatives result in larger level values and therefore lower
-            resolutions. This is implemented in `get_level`.
-          </p>
-
-          <p>
-            Once we find which level to sample from, we can either use the two
-            methods from before: nearest or bilinear interpolation. For the
-            nearest level, L_NEAREST, we use the nearest level to sample from.
-            For L_LINEAR, we take two levels above and below the level returned
-            by `get_level` and interpolate them. We use either of the two
-            sampling methods and find the interpolated texture color from these
-            two levels.
-          </p>
-
-          <p>
-            With level sampling implemented, we can have 3 level sampling
+            With level sampling implemented, we can have in total 3 level sampling
             methods and 2 pixel sampling methods.
           </p>
 
@@ -648,7 +651,7 @@
             for high frequency pixels. It sacrifices some antialiasing power.
             Because of this and because it does not sample subpixels, it
             requires less computational power and no additional memory. Level
-            sampling antialiases is a balance of supersampling and pixel
+            sampling antialiasing power is more of a balance of supersampling and pixel
             sampling in that it precomputes multiple texture resolutions and
             stores them in a mipmap and utilizes them to reduce aliasing across
             different viewing distances. Therefore, it is better aliasing power
