@@ -1,6 +1,75 @@
-<html>
-  <head> </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="index.css" />
+
+    <title>Homework 1: Rasterizer</title>
+  </head>
+
   <body>
-    <h1>Homework 1</h1>
+    <div>
+      <h1 class="text-center mt-5">CS 184: Computer Graphics, Spring 2024</h1>
+      <h1 class="text-center mt-4">Project 1: Rasterizer</h1>
+      <h4 class="text-center mt-4">Henry Khaung</h4>
+      <h6 class="text-center mt-1">
+        Link to Website:
+        <a
+          href="https://cal-cs184-student.github.io/hw-webpages-sp24-henrykhaung/hw1/index.html"
+          >Here</a
+        >
+      </h6>
+    </div>
+
+    <div class="text-center taskdiv">
+      <h3>Task 1: Drawing Single-Color Triangles</h3>
+    </div>
+    <div class="text-start taskp mt-4">
+      <p>
+        In this task, we implemented the function `rasterize_triangle` so that
+        we can render a triangle to screen space given 3 points in (x, y)
+        coordinate space.
+      </p>
+      <p>
+        I solved this task by checking for triangle winding, finding the
+        bounding box to sample the pixels in, and checking whether each pixel
+        passes the three line test, which was covered in lecture. First, to make
+        sure the vectors representing the edges of the triangle are
+        counter-clockwise, I used the right hand rule and the cross-product. The
+        sign of the cross-product indicates the winding direction and in my
+        case, since I want the winding to be in counterclockwise, I check if the
+        cross-product sign is negative (indicating counterclock wise) and if it
+        is I swap the position of vertices ie x becomes y and y becomes x. This
+        is to ensure counter-clockwise winding for the three line test. Once
+        this is taken care of, I found the boundaries of the given vertices: the
+        smallest x and y and the biggest x and y. This is so that I can sample
+        points within this bounding box without having to start from (0,0) and
+        ending at (w,h) of screen space. Using this bounding box, I iterate
+        through each point and for each point, I find sample points by adding
+        0.5 to x and y. Then, I perform the three line test and if the test
+        passes, I call `fill_pixel` helper function to set the color of a pixel.
+        Since this algorithm tests each pixel in the bounding box, it is no
+        worse than one that checks each sample within the bounding box of the
+        triangle.
+      </p>
+
+      <p class="text-center mt-5">
+        <img src="hw1/task1.png" alt="task 1 image" />
+        Screenshot of basic/test4.svg
+      </p>
+    </div>
   </body>
 </html>
