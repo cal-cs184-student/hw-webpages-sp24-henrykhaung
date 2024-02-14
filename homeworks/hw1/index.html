@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -223,85 +223,47 @@
           </p>
         </div>
 
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="text-center mt-5">
-                <img
-                  src="task2s1.png"
-                  alt="task 2 supersample = 1 image"
-                  height="400px"
-                />
-                <p class="imgfont">
-                  Screenshot of basic/test4.svg at supersample rate = 1
-                </p>
-                <div>
-                  Again, at the tip of the purple triangle, we see it
-                  disconnected when it is supposed to be connected.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="text-center mt-5">
-                <img
-                  src="task2s4.png"
-                  alt="task 2 supersample = 4 image"
-                  height="400px"
-                />
-                <p class="imgfont">
-                  Screenshot of basic/test4.svg at supersample rate = 4
-                </p>
-                <div>
-                  This is a bit better, but the tip is still disconnected.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="text-center mt-5">
-                <img
-                  src="task2s9.png"
-                  alt="task 2 supersample = 9 image"
-                  height="400px"
-                />
-                <p class="imgfont">
-                  Screenshot of basic/test4.svg at supersample rate = 9
-                </p>
-                <div>
-                  This is a bit better since the tip is now connected. However,
-                  if you zoom in closely, you can still tell that it is
-                  disconnected.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="text-center mt-5">
-                <img
-                  src="task2s16.png"
-                  alt="task 2 supersample = 16 image"
-                  height="400px"
-                />
-                <p class="imgfont">
-                  Screenshot of basic/test4.svg at supersample rate = 16
-                </p>
-                <div>Much better!</div>
-              </div>
-            </div>
-          </div>
+        <div align="middle">
+          <table style="width=100%">
+            <tr>
+              <td>
+                <img src="task2s1.png" align="middle" width="400px" />
+                <figcaption class="figcaption" align="middle">
+                  Screenshot of basic/test4.svg at supersample rate = 1 <p>Notice how the tip is disconnected.</p>
+                </figcaption>
+              </td>
+              
+              <td>
+                <img src="task2s4.png" align="middle" width="400px" />
+                <figcaption class="figcaption" align="middle">
+                  Screenshot of basic/test4.svg at supersample rate = 4 <p>This is a bit better, but the tip is still disconnected.</p>
+                </figcaption>
+              </td>
+            </tr>
+            <br />
+            <tr>
+              <td>
+                <img src="task2s9.png" align="middle" width="400px" />
+                <figcaption class="figcaption" align="middle">
+                  Screenshot of basic/test4.svg at supersample rate = 9 <p>This is a bit better since the tip is now almost connected.</p>
+                </figcaption>
+              </td>
+              <td>
+                <img src="task2s16.png" align="middle" width="400px" />
+                <figcaption class="figcaption" align="middle">
+                  Screenshot of basic/test4.svg at supersample rate = 16 <p>Much better!</p>
+                </figcaption>
+              </td>
+            </tr>
+          </table>
         </div>
 
-        <div
-          class="text-start mt-4"
-          style="margin-left: 25rem; margin-right: 25rem"
-        >
-          As supersampling rate increases, the triangle edges are smoother. This
-          is because supersampling is essentially taking a higher resolution and
-          then downsampling and averaging it to the output resolution of the
-          frame buffer.
+        <p class="mt-4">
+          As supersampling rate increases, the triangle edges are smoother.
+          This is because supersampling is essentially taking a higher
+          resolution and then downsampling and averaging it to the output
+          resolution of the frame buffer.
+        </p>
         </div>
       </div>
     </div>
@@ -321,32 +283,28 @@
             homogeneous coordinates.
           </p>
 
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="task3.png"
-                    alt="task 2 supersample = 1 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">svg/transforms/robot.svg</p>
-                  <div>Robot doing a T-pose</div>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="task3.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Robot doing a T-pose
+                  </figcaption>
+                </td>
+                <td>
                   <img
                     src="task3_custom.png"
-                    alt="task 2 supersample = 1 image"
-                    height="400px"
+                    align="middle"
+                    width="301px"
+                    height="301px"
                   />
-                  <p class="imgfont">svg/transforms/my_robot.svg</p>
-                  <div>Robot punching and kicking</div>
-                </div>
-              </div>
-            </div>
+                  <figcaption class="figcaption" align="middle">
+                    Robot punching and kicking
+                  </figcaption>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
@@ -474,62 +432,38 @@
             </li>
           </ul>
 
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="task5ns1.png"
-                    alt="task 2 supersample = 1 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="task5ns1.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Nearest sampling at supersample rate = 1
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="task5ns16.png"
-                    alt="task 2 supersample = 4 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task5ns16.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Nearest sampling at supersample rate = 16
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="task5bi1.png"
-                    alt="task 2 supersample = 9 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+                  </figcaption>
+                </td>
+              </tr>
+              <br />
+              <tr>
+                <td>
+                  <img src="task5bi1.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Bilinear interpolation at sample rate = 1
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="task5ns16.png"
-                    alt="task 2 supersample = 16 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task5bi16.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Bilinear interpolation at sample rate = 16
-                  </p>
-                </div>
-              </div>
-            </div>
+                  </figcaption>
+                </td>
+              </tr>
+            </table>
           </div>
 
           <p class="mt-4">
@@ -556,41 +490,31 @@
             we move from high frequencies to low frequencies.
           </p>
 
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="task5ns1extra.png"
-                    alt="task 2 supersample = 1 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="task5ns1extra.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Nearest sampling at supersample rate = 1 of Campanile
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="task5bi1extra.png"
-                    alt="task 2 supersample = 4 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task5bi1extra.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Bilinear interpolation at supersample rate = 1 of Campanile
-                  </p>
-                </div>
-              </div>
-            </div>
+                  </figcaption>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-            <p class="mt-4">
-              Looking at the pixel inspectors, we can see how bilinear
-              interpolation is much better when going from high frequencies to
-              low frequencies. In this case, from the black pixels to the
-              brownish/lighter pixels.
-            </p>
+          <p class="mt-4">
+            Looking at the pixel inspectors, we can see how bilinear
+            interpolation is much better when going from high frequencies to
+            low frequencies. In this case, from the black pixels to the
+            brownish/lighter pixels.
+          </p>
           </div>
         </div>
       </div>
@@ -607,7 +531,7 @@
         <div class="text-start taskp mt-4">
           <p>
             In this task, we have to implement level sampling to the pixel
-            sampling algorithm from task 5./p>
+            sampling algorithm from task 5.
           </p>
 
           <p>
@@ -647,82 +571,61 @@
             methods and 2 pixel sampling methods.
           </p>
 
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="lzero_pnearest.png"
-                    alt="task 2 supersample = 1 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="lzero_pnearest.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Screenshot of Yoshi, L_ZERO and P_NEAREST
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="lzero_plinear.png"
-                    alt="task 2 supersample = 4 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="lzero_plinear.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Screenshot of Yoshi, L_ZERO and P_LINEAR
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <p>
-              On the left image, if we focus on the edge as well as the eye, we
-              can see that there is better antialiasing in L_ZERO and P_LINEAR.
-              As mentioned eariler in the task 5 section, this is because
-              P_NEAREST does not do interpolation like P_LINEAR and only takes
-              one point from the texture. Therefore, we see some
-              staircases/jaggies in the left image whereas in the right image,
-              the staircases/jaggies are antialiased.
-            </p>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="lnearest_pnearest.png"
-                    alt="task 2 supersample = 9 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+                  </figcaption>
+                </td>
+              </tr>
+              <br />
+              <tr>
+                <td>
+                  <img src="lnearest_pnearest.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Screenshot of Yoshi, L_NEAREST and P_NEAREST
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="text-center mt-5">
-                  <img
-                    src="lnearest_plinear.png"
-                    alt="task 2 supersample = 16 image"
-                    height="400px"
-                  />
-                  <p class="imgfont">
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="lnearest_plinear.png" align="midde" width="400px" />
+                  <figcaption class="figcaption" align="middle">
                     Screenshot of Yoshi, L_NEAREST and P_LINEAR
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <p>
-              In the left image, because we used L_NEAREST instead of level 0,
-              we can sample at lower resolutions which is why we don't see
-              staircases unlike the left image using L_ZERO. Similar to how
-              there is interpolation for P_LINEAR, there is also interpolation
-              for L_LINEAR but instead with levels which is why there is much
-              better antialiasing for the right image.
-            </p>
+                  </figcaption>
+                </td>
+              </tr>
+            </table>
           </div>
+          
+          <div align="middle" class="ml-5 mr-5 mt-5 mb-5">
+          <p>
+            This is for the first row of images. On the left image, if we focus on the edge as well as the eye, we
+            can see that there is better antialiasing in L_ZERO and P_LINEAR.
+            As mentioned eariler in the task 5 section, this is because
+            P_NEAREST does not do interpolation like P_LINEAR and only takes
+            one point from the texture. Therefore, we see some
+            staircases/jaggies in the left image whereas in the right image,
+            the staircases/jaggies are antialiased.
+          </p>
+
+          <p>
+            This is for the last row of images. In the left image, because we used L_NEAREST instead of level 0,
+            we can sample at lower resolutions which is why we don't see
+            staircases unlike the left image using L_ZERO. Similar to how
+            there is interpolation for P_LINEAR, there is also interpolation
+            for L_LINEAR but instead with levels which is why there is much
+            better antialiasing for the right image.
+          </p>          
+          </div>
+
 
           <p class="mt-5">
             With everything implemented, we can discuss the tradeoffs between
@@ -764,7 +667,10 @@
 
     <!-- UI -->
 
-    <button class="btn btn-primary scroll-to-top" onclick="scrollToTop()">
+    <button
+      class="btn btn-primary btn-scroll-to-top scroll-to-top"
+      onclick="scrollToTop()"
+    >
       Scroll to Top
     </button>
 
