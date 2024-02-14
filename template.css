@@ -1,0 +1,66 @@
+.navbarmargins {
+  margin-top: 10rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  margin-bottom: 2rem;
+}
+
+.taskbox-outer {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  border: 1px solid #ccc9c9;
+  border-radius: 20px;
+}
+
+.taskbox-inner {
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+}
+
+.taskdiv {
+  font-size: 25px;
+  font-style: bold;
+}
+
+.taskp {
+  margin-left: 15rem;
+  margin-right: 15rem;
+}
+
+.breakline {
+  margin-top: 5em;
+  margin-left: 50em;
+  margin-right: 50em;
+  margin-bottom: 5em;
+}
+
+.imgfont {
+  font-style: italic;
+  font-size: 14px;
+}
+
+.title-margin {
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+}
+
+.breakline-top {
+  margin-top: 2rem;
+  margin-left: 10em;
+  margin-right: 10em;
+}
+
+.breakline-bottom {
+  margin-bottom: 2rem;
+  margin-left: 10em;
+  margin-right: 10em;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  display: none;
+}
