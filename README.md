@@ -10,10 +10,10 @@ To enable Github pages, go to the 'Settings' tab then click on 'Pages'. Under 'B
 
 There are 4 folders, one for each homework. Each contains an index.html file. When the links from the mainpage are clicked, these files will be loaded, so edit these to add your homework webpages.
 
-[Homework 1](hw1/index.html)
+[Homework 1](homeworks/hw1/index.html)
 
-[Homework 2](hw2/index.html)
+[Homework 2](homeworks/hw2/index.html)
 
-[Homework 3](hw3/index.html)
+[Homework 3](homeworks/hw3/index.html)
 
-[Homework 4](hw4/index.html)
+[Homework 4](homeworks/hw4/index.html)
