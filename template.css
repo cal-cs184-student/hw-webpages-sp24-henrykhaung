@@ -64,3 +64,23 @@
   right: 2em;
   display: none;
 }
+
+@media only screen and (max-width: 1980px) and (min-width: 375px) {
+  .navbarmargins,
+  .taskbox-outer,
+  .taskbox-inner,
+  .taskdiv,
+  .taskp,
+  .breakline,
+  .imgfont,
+  .title-margin,
+  .breakline-top,
+  .breakline-bottom {
+    margin: 2rem;
+  }
+
+  .scroll-to-top {
+    bottom: 1em;
+    right: 1em;
+  }
+}

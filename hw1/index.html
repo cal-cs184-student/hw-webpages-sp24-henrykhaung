@@ -358,10 +358,10 @@
               height="400px"
             />
             <p class="imgfont">svg/basic/test7.svg</p>
-            <div>
+            <p>
               Using barycentric coordinates help us create a smooth transition
               of colors within the triangle.
-            </div>
+            </p>
           </div>
         </div>
       </div>
@@ -496,7 +496,7 @@
             </div>
           </div>
 
-          <p>
+          <p class="mt-4">
             Between nearest sampling at supersample rate 1 and bilinear
             interpolation at supersample rate 1, we see that the latitude lines
             (horizontal white lines) are a bit more blurry or better antialiased
@@ -549,7 +549,7 @@
               </div>
             </div>
 
-            <p>
+            <p class="mt-4">
               Looking at the pixel inspectors, we can see how bilinear
               interpolation is much better when going from high frequencies to
               low frequencies. In this case, from the black pixels to the
@@ -640,7 +640,7 @@
               </div>
             </div>
 
-            <p class="text-center">
+            <p>
               On the left image, if we focus on the edge as well as the eye, we
               can see that there is better antialiasing in L_ZERO and P_LINEAR.
               As mentioned eariler in the task 5 section, this is because
@@ -688,7 +688,7 @@
             </p>
           </div>
 
-          <p class="text-center mt-5">
+          <p class="mt-5">
             With everything implemented, we can discuss the tradeoffs between
             speed, memory usage, and antialiasing power between supersampling,
             pixel sampling, and level sampling. Supersampling is a powerful
