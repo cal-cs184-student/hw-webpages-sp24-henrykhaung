@@ -28,7 +28,7 @@
     <div class="title-margin">
       <h1 class="text-center mt-5">CS 184: Computer Graphics, Spring 2024</h1>
       <h1 class="text-center mt-4">Project 2: MeshEdit</h1>
-      <h4 class="text-center mt-4">Henry Khaung, Aaron Smith</h4>
+      <h4 class="text-center mt-4">Henry Khaung, Aaron Wu</h4>
       <h6 class="text-center mt-1"></h6>
     </div>
 
@@ -116,7 +116,10 @@
         <div class="text-start taskp mt-4 mb-5">
           <p>
             Implemented Bezier curves and expanded them to also work on 3D
-            surfaces. Then,
+            surfaces. Then, implemented Phong shading so that meshes can have
+            better shading. Finally, implemented loop subdivision to increase
+            resolution for low resolution polygon meshes by implementing helper
+            functions flipEdge and splitEdge.
           </p>
         </div>
       </div>
@@ -469,7 +472,7 @@
               Then, we split every edge in the mesh that is old, or in the
               original mesh, using the `splitEdge` function. This returns a
               midpoint vertex which we set its position to the new position we
-              stored in `newPosition` of the `Edge` class. `
+              stored in `newPosition` of the `Edge` class.
             </li>
             <br />
             <li>
