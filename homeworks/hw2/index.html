@@ -395,8 +395,23 @@
         </div>
 
         <div class="text-start taskp mt-4 mb-5">
-          <p>summary</p>
-          <p>explain</p>
+          <p>
+            In this task, we implemented a remashing operation on an edge. This
+            operation splits the given edge and inserts a new vertex at the
+            midpoint and connects the two opposing vertex that were not
+            originally connected by the given edge.
+          </p>
+          <p>
+            To implement this, we first drew a diagram of two triangles
+            connected by a half-edge before the split. We labeled every pointer
+            in the diagram before we perform the operation just like we did in
+            `flipEdge`: halfedges, vertices, edges, and faces. In code, we
+            tracked all these pointers. Then, we drew a diagram of what would
+            happen to these two triangles after the split operation. These
+            diagrams were key in helping us implement this function because they
+            helped us easily determine what each pointer should be reassigned
+            to.
+          </p>
 
           <br />
 
