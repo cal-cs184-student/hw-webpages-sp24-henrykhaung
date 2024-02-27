@@ -19,7 +19,7 @@
     />
     <link rel="stylesheet" href="../template.css" />
 
-    <title>Template</title>
+    <title>MeshEdit</title>
   </head>
 
   <hr class="breakline-top" />
@@ -27,7 +27,7 @@
   <body>
     <div class="title-margin">
       <h1 class="text-center mt-5">CS 184: Computer Graphics, Spring 2024</h1>
-      <h1 class="text-center mt-4">Project __: ___</h1>
+      <h1 class="text-center mt-4">Project 2: MeshEdit</h1>
       <h4 class="text-center mt-4">Henry Khaung</h4>
       <h6 class="text-center mt-1"></h6>
     </div>
@@ -41,6 +41,15 @@
         >
           Home
         </a>
+      </li>
+      <li class="nav-item">
+        <button
+          type="button"
+          class="btn-transparent nav-link"
+          onclick="scrollToTask('#overview')"
+        >
+          Overview
+        </button>
       </li>
       <li class="nav-item">
         <button
@@ -69,52 +78,159 @@
           Task 3
         </button>
       </li>
+      <li class="nav-item">
+        <button
+          type="button"
+          class="btn-transparent nav-link"
+          onclick="scrollToTask('#task-4')"
+        >
+          Task 4
+        </button>
+      </li>
+      <li class="nav-item">
+        <button
+          type="button"
+          class="btn-transparent nav-link"
+          onclick="scrollToTask('#task-5')"
+        >
+          Task 5
+        </button>
+      </li>
+      <li class="nav-item">
+        <button
+          type="button"
+          class="btn-transparent nav-link"
+          onclick="scrollToTask('#task-6')"
+        >
+          Task 6
+        </button>
+      </li>
     </ul>
 
-    <div class="taskbox-outer" id="task-1">
+    <div class="taskbox-outer" id="overview">
       <div class="taskbox-inner">
         <div class="text-center taskdiv">
-          <h3>Task 1: Drawing Single-Color Triangles</h3>
+          <h3>Overview</h3>
         </div>
 
         <div class="text-start taskp mt-4 mb-5">
           <p>
-            In this task, we implemented the function `rasterize_triangle` so
-            that we can render a triangle to screen space given 3 points in (x,
-            y) coordinate space.
+            Implemented Bezier curves and expanded them to also work on 3D
+            surfaces. Then,
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="breakline" />
+
+    <div class="taskbox-outer" id="task-1">
+      <div class="taskbox-inner">
+        <div class="text-center taskdiv">
+          <h3>Task 1: Bezier Curves with 1D de Casteljau Subdivision</h3>
+        </div>
+
+        <div class="text-start taskp mt-4 mb-5">
+          <p>
+            In this task, we implemented de Casteljau's algorithm for 1D which
+            is useful for finding Bezier curves.
           </p>
           <p>
-            I solved this task by checking for triangle winding, finding the
-            bounding box to sample the pixels in, and checking whether each
-            pixel passes the three line test, which was covered in lecture.
-            First, to make sure the vectors representing the edges of the
-            triangle are counter-clockwise, I used the right hand rule and the
-            cross-product. The sign of the cross-product indicates the winding
-            direction and in my case, since I want the winding to be in
-            counterclockwise, I check if the cross-product sign is negative
-            (indicating counterclock wise) and if it is I swap the position of
-            vertices ie x becomes y and y becomes x. This is to ensure
-            counter-clockwise winding for the three line test. Once this is
-            taken care of, I found the boundaries of the given vertices: the
-            smallest x and y and the biggest x and y. This is so that I can
-            sample points within this bounding box without having to start from
-            (0,0) and ending at (w,h) of screen space. Using this bounding box,
-            I iterate through each point and for each point, I find sample
-            points by adding 0.5 to x and y. Then, I perform the three line test
-            and if the test passes, I call `fill_pixel` helper function to set
-            the color of a pixel. Since this algorithm tests each pixel in the
-            bounding box, it is no worse than one that checks each sample within
-            the bounding box of the triangle.
+            de Casteljau's algorithm takes the given control points, inserts a
+            point using linear interpolation between each control point, and
+            does this recursively until we are left with only one point.
+            Essentially, it recursively finds intermediate control points
+            between each pair of given control points using linear interpolation
+            until only one point remains. This enables for a smooth curve.
           </p>
 
+          <p>
+            The implementation is straightforward. Simply iterate through the
+            given control points, which is a list of points (x, y) and during
+            the iteration, perform linear interpolation between the current
+            point and the next point and add this interpolated point to a new
+            list of points. This new list containing intermediate points is
+            returned. Eventually, this new list will only contain one final
+            point that lies on the Bezier curve. This final point is the red
+            point shown below in the images.
+          </p>
+
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="task1start.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Given 6 control points
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task1start1.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    evaluateStep is called once
+                  </figcaption>
+                </td>
+              </tr>
+              <br />
+              <tr>
+                <td>
+                  <img src="task1start2.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    evaluateStep is called twice
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task1start3.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    evaluateStep is called three times
+                  </figcaption>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="task1start4.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    evaluateStep is called four times
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task1end.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Final intermediate point with completed bezier curve!
+                  </figcaption>
+                </td>
+              </tr>
+            </table>
+          </div>
+
           <div class="text-center mt-5">
-            <img src="task1.png" alt="task 1 image" />
-            <p class="imgfont">Screenshot of basic/test4.svg</p>
-            <div>
-              At the tip of purple triangle, we see it disconnected when it is
-              supposed to be connected.
-            </div>
-            <div>We can also see aliasing especially in the red triangle.</div>
+            <img src="task1t.gif" height="400px" />
+            <p class="imgfont">when parameter t is changed</p>
+          </div>
+
+          <div>
+            <p>
+              If we have 6 control points, we would have to do linear
+              interpolation 5 times to get 5 intermediate control points for the
+              first step of de Casteljau's algorithm. Then, with these 5 points,
+              we would have to do linear interpolation 4 times to get 4
+              intermediate points. This repeats until we have one final control
+              point as shown above in the images. Essentially, given n points,
+              we have to find n-1 intermediate points using linear interpolation
+              until we are left with one final point that lies on the Bezier
+              curve. This algorithm is used to find the bezier curve as
+              indicated by the green curve above.
+            </p>
+
+            <p>
+              The parameter t ranges from 0 to 1 and determines the position of
+              the final intermediate point. For example, when t = 0, this
+              corresponds to the starting point. In the gif above, it would be
+              the leftmost and bottommost point whereas when t = 1, this
+              corresponds to the last point which is the rightmost and
+              bottommost point. The parameter t essentially controls how far
+              along the curve the interpolated point should be.
+            </p>
           </div>
         </div>
       </div>
@@ -126,165 +242,58 @@
     <div class="taskbox-outer" id="task-2">
       <div class="taskbox-inner">
         <div class="text-center taskdiv">
-          <h3>Task 2: Antialiasing by Supersampling</h3>
+          <h3>Task 2: Bezier Surfaces with Separable 1D de Casteljau</h3>
         </div>
         <div class="text-start taskp mt-4">
           <p>
-            In this task, we implemented supersampling to get rid of the
-            "jaggies" that we saw from task 1. In other words, we antialiase by
-            supersampling.
+            In this task, we extended de Casteljau's algorithm to work with
+            surfaces.
           </p>
 
           <p>
-            To support supersampling, I had to modify set_sample_rate,
-            set_framebuffer_target, resolve_to_framebuffer, rasterize_triangle,
-            and add a helper function called fill_supersample_pixel.
+            Instead of working with a list of 2D coordinates, we are now given a
+            grid, or matrix, of 3D coordinates. We first find Bezier curve
+            points for each row of points using de Casteljau's algorithm. Then,
+            we find the Bezier surface point on the computed Bezier curve
+            points.
           </p>
-
           <ul>
             <li>
-              `set_sample_rate`
+              `evaluateStep`
               <p>
-                This function is called when we want to change the supersample
-                rate or when we press = during the runtime of the draw program.
-                The only change needed here to support supersampling is to
-                ensure that when the sample buffer is resized, it is resized to
-                a size of width * height * rate where width and height are the
-                dimensions for the frame buffer while rate is the sample rate.
-                This calculation is needed to support the increased number of
-                samples.
+                This function is called when we want to evaluate the next step
+                of de Casteljau's algorithm and is a helper function for
+                `evaluate1D`. It is the same logic as the `evaluateStep`
+                function for BezierCurve except we work with 3D coordinates.
               </p>
             </li>
             <li>
-              `set_framebuffer_target`
+              `evaluate1D`
               <p>
-                This function is called when the draw program window is resized.
-                When the program window is resized, we have to resize the sample
-                buffer as well and to support supersampling, the sample rate is
-                accounted for in the resize calculation.
+                This function is called when we want to fully evaluate de
+                Casteljau's algorithm given a list of control points and
+                pararmeter t. It calls `evaluateStep` until we are left with one
+                final point which would be the evaluated curve point.
               </p>
             </li>
             <li>
-              `rasterize_triangle`
+              `evaluate`
               <p>
-                Since supersampling is sampling multiple points within each
-                pixel and averaging them, we need to modify this function to
-                have nested for loops in order to iterate over each pixel inside
-                the bounding box. Then, we test these subpixels with the three
-                line test again and if they are within the triangle, we color
-                them using `fill_supersample_pixel`.
-              </p>
-            </li>
-            <li>
-              `fill_supersample_pixel`
-              <p>
-                This is a helper function I added. This functions similarly to
-                the `fill_pixel` function except it supports supersampling; the
-                function makes it so that all the supersampled pixels, or
-                subpixels, correspond to the pixel in the frame buffer and are
-                changed to the same color. In order to do this, I need to change
-                the way I index into the sample buffer. This is done by
-                accounting for sample rate and keeping track of the sample
-                within the pixel (x, y). This means that I take in one extra
-                parameter which I call `s` and we keep track of it inside the
-                inner loops for the subpixels.
+                This function finds us the Bezier surface point given a grid of
+                control points and parameters u and v by making use of the
+                helper functions from above: `evaluate1D` and `evaluateStep`. As
+                mentioned above, we first perform de Casteljau's algorithm on
+                the rows using parameter u to find Bezier curve points. Then,
+                the final surface point is determined by again calling
+                `evaluate1D` but instead with parameter v.
               </p>
             </li>
           </ul>
-          <p>
-            I used the sample_buffer and resized it by doing width * height *
-            sample_rate so that there is enough memory for the subpixels. I also
-            modified the rasterize_triangle function to have two for loops
-            inside the loops for iteration through the pixels. These two inner
-            loops are for iteration through the subpixels; within them, I find
-            the sample point for each subpixel. Then, I perform the 3 point test
-            and if it passes, I call on fill_supersample_pixel to fill the
-            subpixel with the specified color. I also keep track of the index of
-            the current subpixel so that in fill_supersample_pixel, I can index
-            into the correct sample_buffer. The function resolve_to_framebuffer
-            is also modified by taking our subpixels and averaging them down.
-          </p>
         </div>
 
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="text-center mt-5">
-                <img
-                  src="task2s1.png"
-                  alt="task 2 supersample = 1 image"
-                  height="400px"
-                />
-                <p class="imgfont">
-                  Screenshot of basic/test4.svg at supersample rate = 1
-                </p>
-                <div>
-                  Again, at the tip of the purple triangle, we see it
-                  disconnected when it is supposed to be connected.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="text-center mt-5">
-                <img
-                  src="task2s4.png"
-                  alt="task 2 supersample = 4 image"
-                  height="400px"
-                />
-                <p class="imgfont">
-                  Screenshot of basic/test4.svg at supersample rate = 4
-                </p>
-                <div>
-                  This is a bit better, but the tip is still disconnected.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="text-center mt-5">
-                <img
-                  src="task2s9.png"
-                  alt="task 2 supersample = 9 image"
-                  height="400px"
-                />
-                <p class="imgfont">
-                  Screenshot of basic/test4.svg at supersample rate = 9
-                </p>
-                <div>
-                  This is a bit better since the tip is now connected. However,
-                  if you zoom in closely, you can still tell that it is
-                  disconnected.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="text-center mt-5">
-                <img
-                  src="task2s16.png"
-                  alt="task 2 supersample = 16 image"
-                  height="400px"
-                />
-                <p class="imgfont">
-                  Screenshot of basic/test4.svg at supersample rate = 16
-                </p>
-                <div>Much better!</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="text-start mt-4"
-          style="margin-left: 25rem; margin-right: 25rem"
-        >
-          As supersampling rate increases, the triangle edges are smoother. This
-          is because supersampling is essentially taking a higher resolution and
-          then downsampling and averaging it to the output resolution of the
-          frame buffer.
+        <div class="text-center mt-5">
+          <img src="task2.png" height="600px" />
+          <p class="imgfont">Screenshot of bez/teapot.bez</p>
         </div>
       </div>
     </div>
@@ -295,23 +304,274 @@
     <div class="taskbox-outer" id="task-3">
       <div class="taskbox-inner">
         <div class="text-center taskdiv">
-          <h3>Task 3: ___</h3>
+          <h3>Task 3: Area-Weighted Vertex Normals</h3>
         </div>
 
         <div class="text-start taskp mt-4 mb-5">
-          <p>task summary</p>
-          <p>explain</p>
+          <p>
+            In this task, we implemented area-weighted normal vectors at
+            vertices. These vertex normals can be used for Phong shading which
+            is a better shading for smooth shading compared to flat shading.
+          </p>
+          <p>
+            To implement this, we find all the neighboring faces that share the
+            given vertex and for each face, find the area and normal. Then,
+            compute the area weighted norm. We can then sum all the area
+            weighted norms of each face and normalize it. This would be the unit
+            normal at the given vertex.
+          </p>
 
-          <div class="text-center mt-5">
-            <img src="" alt="" />
-            <p class="imgfont">Screenshot of</p>
-            <div>Describe image</div>
+          <br />
+
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="task3.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Teapot without shading (without vertex normals)
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task3shading.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Teapot with shading
+                  </figcaption>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
     </div>
 
     <hr class="breakline" />
+
+    <!-- TASK 4 -->
+    <div class="taskbox-outer" id="task-4">
+      <div class="taskbox-inner">
+        <div class="text-center taskdiv">
+          <h3>Task 4: _</h3>
+        </div>
+
+        <div class="text-start taskp mt-4 mb-5">
+          <p>summary</p>
+          <p>explain</p>
+
+          <br />
+
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="task3.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Teapot without shading (without vertex normals)
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task3shading.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Teapot with shading
+                  </figcaption>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="breakline" />
+
+    <!-- TASK 5 -->
+    <div class="taskbox-outer" id="task-5">
+      <div class="taskbox-inner">
+        <div class="text-center taskdiv">
+          <h3>Task 5: _</h3>
+        </div>
+
+        <div class="text-start taskp mt-4 mb-5">
+          <p>summary</p>
+          <p>explain</p>
+
+          <br />
+
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="task3.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Teapot without shading (without vertex normals)
+                  </figcaption>
+                </td>
+                <td>
+                  <img src="task3shading.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Teapot with shading
+                  </figcaption>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="breakline" />
+
+    <!-- TASK 6 -->
+    <div class="taskbox-outer" id="task-6">
+      <div class="taskbox-inner">
+        <div class="text-center taskdiv">
+          <h3>Task 6: Loop Subdivision for Mesh Upsampling</h3>
+        </div>
+
+        <div class="text-start taskp mt-4 mb-5">
+          <p>
+            In this task, we implement loop subdivision which increases the
+            number of triangles in the mesh. This way, we can convert a low
+            resolution polygon mesh into a higher resolution. This is a similar
+            concept to supersampling in antialiasing.
+          </p>
+          <p>To implement this,</p>
+          <ol>
+            <li>
+              We computed new positions for all the vertices in the input mesh
+              and stored these new positions in the `newPosition` property of
+              the `Vertex` class. To compute a new position, we can use the
+              following formula:
+              <br />
+              (1 - n * u) * original_position + u *
+              original_neighbor_position_sum
+              <br />
+              where n is the degree of the current vertex, u is a constant
+              dependent on n, original_position is the original position of the
+              current vertex, and original_neighbor_position_sum is the sum of
+              all neighboring vertices' positions. When n is 3, then u is 3/16;
+              otherwise, u is 3/(8 * n).
+            </li>
+            <br />
+            <li>
+              Then, we computed the new vertex positions and stored it in
+              `newPosition` property of the `Edge` class. The new vertex
+              positions are calculated using the following formula:
+              <br />
+              3/8 * (A + B) + 1/8 * (C + D)
+              <br />
+              where A and B are the positions of the vertices that share the
+              edge that connects two triangles together and C and D are the
+              positions of the other vertices of each of the two triangles.
+            </li>
+            <br />
+            <li>
+              Then, we split every edge in the mesh that is old, or in the
+              original mesh, using the `splitEdge` function. This returns a
+              midpoint vertex which we set its position to the new position we
+              stored in `newPosition` of the `Edge` class. `
+            </li>
+            <br />
+            <li>
+              After this, we flip any new edge that connects an old and new
+              vertex.
+            </li>
+            <br />
+            <li>We then set the new vertex positions for every vertex.</li>
+          </ol>
+
+          <p>
+            Following these steps, we were able to make the upsample function
+            work. However, it did not produce the expected results. There were
+            two bugs. Initially, the upsample function creates a mesh with all
+            the faces missing. This was because we did not set any edges to be
+            `isNew` after splitting. After this was fixed, we encountered an
+            error where the upsampled mesh results in a mesh that is missing
+            polygons. This was not a bug from the upsample function but rather a
+            bug from our `splitEdge` function. The problem was fixed by properly
+            reassigning all the pointers, new and old, of the input mesh of the
+            function.
+          </p>
+
+          <p>
+            After loop subdivision, sharp corners and edges become smoother
+            since the number of polygons in the mesh are increased. You cannot
+            reduce this effect by pre-splitting some edges because pre-splitting
+            creates new edges and therefore more polygons although less polygons
+            created compared to loop subdivision.
+          </p>
+
+          <p>
+            The cube is not symmetrical after repeated subdivisions because
+            originally, for each of its faces, it only has one inner edge which
+            causes it to be asymmetric. The fix is to pre-split this edge for
+            each face and then do subdivision.
+          </p>
+
+          <br />
+
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img
+                    src="task6.png"
+                    align="middle"
+                    width="400px"
+                    height="400px"
+                  />
+                  <figcaption class="figcaption" align="middle">
+                    This inner edge highlighted white makes the cube
+                    asymmetrical. The fix is to pre-split!
+                  </figcaption>
+                  <br />
+                </td>
+                <td>
+                  <img
+                    src="task6asym.png"
+                    align="middle"
+                    width="400px"
+                    height="400px"
+                  />
+                  <figcaption class="figcaption" align="middle">
+                    Asymmetric after repeated subdivisions
+                  </figcaption>
+                  <br />
+                </td>
+              </tr>
+              <br />
+              <tr>
+                <td>
+                  <img
+                    src="task6presplit.png"
+                    align="middle"
+                    width="400px"
+                    height="400px"
+                  />
+                  <figcaption class="figcaption" align="middle">
+                    Splitting the white edge once and doing this for all faces
+                    will make the cube symmetrical.
+                  </figcaption>
+                  <br />
+                </td>
+                <td>
+                  <img
+                    src="task6sym.png"
+                    align="middle"
+                    width="400px"
+                    height="400px"
+                  />
+                  <figcaption class="figcaption" align="middle">
+                    The cube is now symmetric!
+                  </figcaption>
+                  <br />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <hr class="breakline-bottom" />
 
