@@ -407,7 +407,11 @@
             in the diagram before we perform the operation just like we did in
             `flipEdge`: halfedges, vertices, edges, and faces. In code, we
             tracked all these pointers. Then, we drew a diagram of what would
-            happen to these two triangles after the split operation. These
+            happen to these two triangles after the split operation and labeled
+            what each pointer would point to. In code, this is done by using
+            `setNeighbor` function; we also had to create new halfedges, new
+            vertices, new edges, and faces which is done by calling
+            `newHalfedge`, `newVertex`, `newEdge`, and `newFace`. Overall, these
             diagrams were key in helping us implement this function because they
             helped us easily determine what each pointer should be reassigned
             to.
