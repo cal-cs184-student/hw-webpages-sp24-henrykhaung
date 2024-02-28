@@ -354,12 +354,26 @@
     <div class="taskbox-outer" id="task-4">
       <div class="taskbox-inner">
         <div class="text-center taskdiv">
-          <h3>Task 4: _</h3>
+          <h3>Task 4: Edge Flip</h3>
         </div>
 
         <div class="text-start taskp mt-4 mb-5">
-          <p>summary</p>
-          <p>explain</p>
+          <p>
+            In this task, we implemented a remashing operation on an edge. This
+            operation flips an edge by changing its two endpoints, or vertices,
+            to another pair of vertices.
+          </p>
+          <p>
+            To implement this, we wrote down a list of all elements: half-edges,
+            vertices, edges, and faces in a simple mesh. The simple mesh
+            consists of two triangles glued together by a half-edge. This list
+            of elements represents what the elements were originally pointing to
+            before the flip operation. This list is important because it ensures
+            that we do not forget to reassign the pointers after the flip
+            operation. Finally, we perform the flip operation by changing the
+            given edge's two vertices to the other two vertices in the simple
+            mesh and reassigning all pointers.
+          </p>
 
           <br />
 
@@ -367,15 +381,15 @@
             <table style="width=100%">
               <tr>
                 <td>
-                  <img src="task3.png" align="middle" width="400px" />
+                  <img src="task3.png" align="middle" width="360px" />
                   <figcaption class="figcaption" align="middle">
-                    Teapot without shading (without vertex normals)
+                    Teapot before any flip operation
                   </figcaption>
                 </td>
                 <td>
-                  <img src="task3shading.png" align="middle" width="400px" />
+                  <img src="task4.png" align="middle" width="400px" />
                   <figcaption class="figcaption" align="middle">
-                    Teapot with shading
+                    Teapot after some flip operations
                   </figcaption>
                 </td>
               </tr>
@@ -517,10 +531,9 @@
 
           <p>
             After loop subdivision, sharp corners and edges become smoother
-            since the number of polygons in the mesh are increased. You cannot
-            reduce this effect by pre-splitting some edges because pre-splitting
-            creates new edges and therefore more polygons although less polygons
-            created compared to loop subdivision.
+            since the number of polygons in the mesh are increased. You can
+            reduce this effect by pre-splitting edges near the sharp corners and
+            edges.
           </p>
 
           <p>
