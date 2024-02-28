@@ -536,11 +536,55 @@
             edges.
           </p>
 
+          <div align="middle">
+            <table style="width=100%">
+              <tr>
+                <td>
+                  <img src="task6nosharp.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    Before subdivision
+                  </figcaption>
+                  <br />
+                </td>
+                <td>
+                  <img src="task6nosharpL.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    After subdivision, it becomes rounded
+                  </figcaption>
+                  <br />
+                </td>
+              </tr>
+              <br />
+              <tr>
+                <td>
+                  <img src="task6sharp.png" align="middle" width="400px" />
+                  <figcaption class="figcaption" align="middle">
+                    After pre-splitting edges around sharp corners and
+                    subdivision
+                  </figcaption>
+                  <br />
+                </td>
+                <td>
+                  <img
+                    src="task6sharp_rotate.png"
+                    align="middle"
+                    width="400px"
+                  />
+                  <figcaption class="figcaption" align="middle">
+                    Viewing the mesh from the side shows us that the sharp
+                    corner is somewhat maintained
+                  </figcaption>
+                  <br />
+                </td>
+              </tr>
+            </table>
+          </div>
+
           <p>
-            The cube is not symmetrical after repeated subdivisions because
-            originally, for each of its faces, it only has one inner edge which
-            causes it to be asymmetric. The fix is to pre-split this edge for
-            each face and then do subdivision.
+            Similarly, the cube is not symmetrical after repeated subdivisions
+            because originally, for each of its faces, it only has one inner
+            edge which causes it to be asymmetric. The fix is to pre-split this
+            edge for each face and then do subdivision.
           </p>
 
           <br />
